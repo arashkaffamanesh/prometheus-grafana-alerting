@@ -1,0 +1,15 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  labels:
+    service: grafana
+  name: monitoring
+spec:
+  rules:
+  - host: grafana.xxxx.kubernauts.io
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: grafana
+          servicePort: 3000

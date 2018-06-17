@@ -1,0 +1,16 @@
+# ===========================================================================
+# Push the "applications" to the application servers
+# ===========================================================================
+- hosts: all 
+  become: true
+  gather_facts: false
+
+  tasks:
+     - name: "Copy the applications to the servers."
+       copy:
+         src: "{{ item }}"
+         dest: "/root/{{ item }}"
+       with_items:
+         - eat_cpu.py
+         - eat_disk.py
+         - eat_memory.py

@@ -1,0 +1,22 @@
+# ===========================================================================
+# Do setup on all hosts we want to monitor
+# ===========================================================================
+- hosts: all  # we want the metrics of the monitoring server too
+  become: true
+
+  tasks:
+    - name: "Install Prometheus Node Exporter package."
+      apt:
+        name: prometheus-node-exporter
+
+    - name: "Ensure the Node Exporter is started and starts at host boot."
+      service:
+        name: prometheus-node-exporter
+        enabled: true
+        state: started
+
+    - name: "Check if the service emits metrics."
+      uri:
+        url: http://127.0.0.1:9100/metrics
+        method: GET
+        status_code: 200
