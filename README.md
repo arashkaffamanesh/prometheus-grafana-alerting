@@ -10,7 +10,7 @@ The following adaptions / extentions was needed to provide monitoring and alerti
 
 The gateway-grafana-prometheus folder was added to this repo and has her own README.md file and provides 2 palybooks for installing the node-exporter on the Gateway VM along with other helper tools like eat_cpu.py, eat_memory.py and eat_disk.py for testing.
 
-If you're going to play with alerting you need to follow the steps for installing the node-exporter and the helper tools via ansible as described in the [gateway-grafana-prometheus](README file).
+If you're going to play with alerting you need to follow the steps for installing the node-exporter and the helper tools via ansible as described in the [README file](gateway-grafana-prometheus/README.md).
 
 In our case we're using an Ubuntu Test VM running on OpenStack to test alerting with Slack, Hipchat or via email.
 
