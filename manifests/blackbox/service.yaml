@@ -3,7 +3,6 @@ kind: Service
 metadata:
   annotations:
     prometheus.io/scrape: 'true'
-    prometheus.io/path: '/probe'
   labels:
     name: blackbox
   name: blackbox

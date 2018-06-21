@@ -18,12 +18,11 @@ spec:
       serviceAccountName: prometheus-k8s
       containers:
       - name: prometheus
-        image: prom/prometheus:v1.7.0
+        image: quay.io/prometheus/prometheus:latest
         args:
-          - '-storage.local.retention=12h'
-          - '-storage.local.memory-chunks=500000'
-          - '-config.file=/etc/prometheus/prometheus.yaml'
-          - '-alertmanager.url=http://alertmanager:9093/'
+          - '--storage.tsdb.retention=12h'
+          - '--config.file=/etc/prometheus/prometheus.yaml'
+          - '--web.enable-lifecycle'
         ports:
         - name: webui
           containerPort: 9090
