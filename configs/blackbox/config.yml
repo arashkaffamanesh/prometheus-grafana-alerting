@@ -1,0 +1,11 @@
+modules:
+  http_2xx:
+    prober: http
+    http:
+      method: GET
+      headers:
+        Host: blackbox.example.com
+        Accept-Language: en-US
+      tls_config:
+        insecure_skip_verify: false
+      preferred_ip_protocol: "ip4" # defaults to "ip6"
