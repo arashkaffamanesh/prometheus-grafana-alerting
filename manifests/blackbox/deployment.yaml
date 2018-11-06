@@ -1,0 +1,32 @@
+apiVersion: extensions/v1beta1
+#apiVersion: apps/v1beta2
+kind: Deployment
+metadata:
+  name: blackbox
+  namespace: monitoring
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: blackbox
+  template:
+    metadata:
+      name: blackbox
+      labels:
+        app: blackbox
+    spec:
+      containers:
+      - name: blackbox
+        image: quay.io/prometheus/blackbox-exporter:latest
+        args:
+          - '--config.file=/etc/blackbox/blackbox.yaml'
+        ports:
+        - name: blackbox
+          containerPort: 9115
+        volumeMounts:
+        - name: config-volume
+          mountPath: /etc/blackbox
+      volumes:
+      - name: config-volume
+        configMap:
+          name: blackbox

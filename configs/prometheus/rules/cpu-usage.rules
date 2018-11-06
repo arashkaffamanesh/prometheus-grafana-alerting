@@ -1,10 +1,11 @@
-ALERT NodeCPUUsage
-  IF (100 - (avg by (instance) (irate(node_cpu{job="gateway-node-exporter",mode="idle"}[1m])) * 100)) > 50
-  FOR 10s
-  LABELS {
-    severity="page"
-  }
-  ANNOTATIONS {
-    SUMMARY = "{{$labels.instance}}: High CPU usage detected",
-    DESCRIPTION = "{{$labels.instance}}: CPU usage is above 50% (current value is: {{ $value }})"
-  }
+groups:
+- name: NodeCPUUsage
+  rules:
+  - alert: NodeCPUUsage-High
+    expr: (100 - (avg by (instance) (irate(node_cpu{mode="idle"}[1m])) * 100)) > 10
+    for: 10s
+    labels:
+      severity: "page"
+    annotations:
+      summary: "{{$labels.instance}}: High CPU usage detected"
+      description: "{{$labels.instance}}: CPU usage is above 50% (current value is: {{ $value }})"

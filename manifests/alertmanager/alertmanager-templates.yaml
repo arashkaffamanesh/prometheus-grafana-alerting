@@ -203,4 +203,3 @@ metadata:
   creationTimestamp: null
   name: alertmanager-templates
   namespace: monitoring
-  namespace: monitoring
